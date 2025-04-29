@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "studorm"
+version = "1.0.0"
+description = "student dormitory management"
+authors = ["team 12"]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.109.0"
+uvicorn = {extras = ["standard"], version = "^0.25.0"}
+pillow = "^10.2.0"
+sqlalchemy = "^2.0.40"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
