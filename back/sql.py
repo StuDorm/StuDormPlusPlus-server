@@ -147,16 +147,35 @@ def live_in_room(room_id):
     return result
 
 # Поиск учеников по какому-то параметру
-def get_filtered(parametr, value):
+def get_filtered_stud(parametr, value):
+    connection = sqlite3.connect('database.db')
+    cursor = connection.cursor()
+    avaible_rooms = []
+
+    cursor.execute(f"SELECT id FROM Pupils_hobby WHERE {parametr} = ?", (value,))
+    result = cursor.fetchall()
+    for i in range(len(result)):
+        one_res = result[i]
+        cursor.execute('SELECT room_id, name FROM Rooms WHERE villagers = ?',(one_res))
+        avaible_rooms.append(cursor.fetchall())
+
+    print(avaible_rooms)
+    connection.close()
+    return result
+
+
+def get_filtered_room(parametr, value):
     connection = sqlite3.connect('database.db')
     cursor = connection.cursor()
 
-    query = f"SELECT first_name, last_name, patronymic FROM Pupils_hobby WHERE {parametr} = ?"
-    cursor.execute(query, (value,))
+    cursor.execute(f"SELECT id, first_name, last_name, patronymic FROM Pupils_hobby WHERE {parametr} = ?", (value,))
     result = cursor.fetchall()
     for i in range(len(result)):
-        pass
+        one_res = result[i]
+
+
     connection.close()
+
     return result
 
 def stud_login(login,password):
