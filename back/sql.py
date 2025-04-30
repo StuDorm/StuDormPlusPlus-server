@@ -154,7 +154,8 @@ def get_filtered(parametr, value):
     query = f"SELECT first_name, last_name, patronymic FROM Pupils_hobby WHERE {parametr} = ?"
     cursor.execute(query, (value,))
     result = cursor.fetchall()
-
+    for i in range(len(result)):
+        pass
     connection.close()
     return result
 
