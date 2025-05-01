@@ -167,5 +167,7 @@ def stud_login(login,password):
         )
         return cursor.fetchone() is not None
 
+new_stud("Rim","Rimer","Rimovich","RimRim","RimRimRim","18.07.2005",2,"M","Rim","hobby-horsing","6.40","13.00",)
+
 # Инициализация базы при запуске
 init_db()
