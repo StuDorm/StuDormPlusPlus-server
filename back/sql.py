@@ -20,16 +20,17 @@ def init_db():
 
     # Таблица комнат
     cursor.execute('''
-        CREATE TABLE IF NOT EXISTS Rooms(
-            room_id INTEGER PRIMARY KEY,
-            name TEXT,
-            description TEXT DEFAULT 'Just common room',
-            villagers_gender TEXT DEFAULT 'None',
-            villagers_course TEXT DEFAULT 'None',
-            villagers TEXT DEFAULT 'Anybody',
-            capacity TEXT DEFAULT 'Anybody'
-        )
-    ''')
+            CREATE TABLE IF NOT EXISTS Rooms(
+                room_id INTEGER PRIMARY KEY,
+                name TEXT NOT NULL,
+                description TEXT DEFAULT 'Just common room',
+                villagers_gender TEXT DEFAULT 'None',
+                villagers_course TEXT DEFAULT 'None',
+                villagers TEXT DEFAULT 'Anybody',
+                capacity INTEGER DEFAULT 1,  
+                CHECK (capacity > 0)  
+            )
+        ''')
 
     # Таблица учеников + увлечения
     cursor.execute('''
@@ -167,7 +168,7 @@ def stud_login(login,password):
         )
         return cursor.fetchone() is not None
 
-new_stud("Rim","Rimer","Rimovich","RimRim","RimRimRim","18.07.2005",2,"M","Rim","hobby-horsing","6.40","13.00",)
+new_room("1", "jist tipcal room", "M",2, "177162")
 
 # Инициализация базы при запуске
 init_db()
